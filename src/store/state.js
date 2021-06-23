@@ -7,23 +7,20 @@
     minAQI: Number,
     lastUpdated: Number,
     series: [
-      {
-        AQI: Number,
-        timestamp: new Date ()
-      }
+      [
+        timestamp: new Date (),
+        AQI: Number
+      ]
     ]
   }
 }
-Alternative of using cloneDeep, two mutation cycles
-{
-  'cities': {},
-  `series-${city}`: []
-}
- */
+citiesUpdated: [{city, data_point}]
+*/
 export default {
   cities: {},
   user: {
     id: '',
     city: ''
-  }
+  },
+  citiesUpdated: []
 }

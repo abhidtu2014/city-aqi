@@ -1,4 +1,4 @@
-import constants from './constants'
+import constants from './constants/AQICategories'
 
 export function getCategoryByAQI (aqi) {
   if (aqi >= 0 && aqi <= 50) {

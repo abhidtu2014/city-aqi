@@ -1,7 +1,7 @@
 <template>
   <div class="graph-wrapper">
     <div class="graph-header-container">
-      <h2>Compare Cities Series Data</h2>
+      <h2 style="text-align: left;">Compare Cities Series Data</h2>
     </div>
     <el-row :gutter="10">
       <el-col :xs="8" :sm="6" :md="5" :lg="4" :xl="2">
@@ -28,14 +28,21 @@
         </el-card>
       </el-col>
       <el-col :xs="4" :sm="6" :md="7" :lg="8" :xl="10">
-        <div class="chart-wrapper"></div>
+        <div class="chart-wrapper">
+          <DynamicChart :selectedCities="selectedCities" />
+        </div>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import DynamicChart from "./DynamicChart"
+
 export default {
+  components: {
+    DynamicChart
+  },
   data() {
     return {
       selectedCities: []
@@ -43,7 +50,7 @@ export default {
   },
   computed: {
     cities() {
-      return this.$store.getters["getCities"];
+      return Object.keys(this.$store.state.cities).map((key) => key) || []
     }
   }
 };

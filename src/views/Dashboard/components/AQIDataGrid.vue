@@ -77,9 +77,17 @@ export default {
   },
   computed: {
     tableData () {
-      return this.$store.getters['getLatestDataCityWise']
+      return Object.keys(this.$store.state.cities).map((key) => {
+        const city = this.$store.state.cities[key];
+        return {
+          city: key,
+          AQI: city.AQI,
+          lastUpdated: city.lastUpdated
+        }
+      })
     }
   },
+
   methods: {
     formatter(row) {
       return moment(row.lastUpdated).fromNow()
@@ -100,9 +108,10 @@ export default {
 <style lang="scss" scoped>
   .table-container {
     display: flex;
-    justify-content: center;
     min-height: 400px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    margin: auto;
+    max-width: 800px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   }
 
   /deep/ .el-table .GOOD {
