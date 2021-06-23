@@ -1,14 +1,14 @@
-import { isEmpty, cloneDeep } from 'lodash'
+import { isEmpty } from 'lodash'
 
 export default {
   UPDATE_CITY_DATA (state, data) {
-    let cities = cloneDeep(state.cities)
+    let cities = state.cities
     let currentUpdatedCities = []
     data.forEach((currentData) => {
       // Handle Negative scenarios if any
-      if (isEmpty(currentData) || isEmpty(currentData.city)) return
-
-      const {city, aqi} = currentData
+      if (!currentData || !currentData.city) return
+      let {city, aqi} = currentData
+      aqi = Number(parseFloat(aqi).toFixed(2))
 
       let storedCity = cities[city]
       if (isEmpty(storedCity)) {
@@ -20,12 +20,12 @@ export default {
         maxAQI: Math.max(aqi, storedCity.maxAQI),
         minAQI: Math.min(aqi, storedCity.minAQI),
         lastUpdated: currentTime,
-        series: cloneDeep([...storedCity.series, [currentTime, aqi]])
+        series: [...storedCity.series, [currentTime, aqi]]
       }
       cities[city] = updateStoredCity
       currentUpdatedCities.push({name: city, dataPoint: [currentTime, aqi]})
     })
-    state.cities = cities
+    state.cities = Object.assign({}, cities)
     state.citiesUpdated = currentUpdatedCities
   }
 }

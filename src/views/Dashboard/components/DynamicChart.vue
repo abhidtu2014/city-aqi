@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import {cloneDeep} from 'lodash';
+import { cloneDeep } from "lodash";
 
 export default {
   props: {
@@ -22,19 +22,6 @@ export default {
   data() {
     return {
       chartOptions: {
-        chart: {
-          events: {
-            load: function(dataPoint, index) {
-              // set up the updating of the chart each second
-              if (dataPoint && index) {
-                console.log('Add Data Point', dataPoint[0], dataPoint[1])
-                var series = this.series[index]
-                series.addPoint(dataPoint[0], dataPoint[1], true, true)
-              }
-            }
-          }
-        },
-
         time: {
           useUTC: false
         },
@@ -71,83 +58,84 @@ export default {
         // },
 
         title: {
-          text: 'Live AQI data'
+          text: "Live AQI data"
         },
 
         exporting: {
-          enabled: false
+          enabled: true
         },
 
         series: []
       },
-      previousSelectedCitiesCount: 0
-    }
+      previousSelectedCitiesCount: 0, // To limit unneccessary re-render
+      seriesIndexMap: {} // Map to achieve O(1) insertion and deletion in series Data
+    };
   },
 
   computed: {
-    citiesThatJustGotUpdated () {
-      const citiesUpdated = cloneDeep(this.$store.state.citiesUpdated)
-      return this.selectedCities.length && citiesUpdated.filter((city) => this.selectedCities.includes(city.name))
+    citiesThatJustGotUpdated() {
+      return (
+        this.selectedCities.length &&
+        this.$store.state.citiesUpdated.filter(city =>
+          this.selectedCities.includes(city.name)
+        )
+      );
     }
   },
 
   watch: {
-    selectedCities (values) {
+    selectedCities(values) {
       if (this.previousSelectedCitiesCount > values.length) {
-        console.log('City just got removed')
         // Remove any city if removed from selection
-        const series = cloneDeep(this.chartOptions.series)
-        this.chartOptions.series = series.filter((series) => values.includes(series.name))
+        this.removeUnselectedCityFromSeries(values)
       } else if (this.previousSelectedCitiesCount < values.length) {
         // Add New Series/Update Existing series data
-        console.log('Added New Series')
-        this.updateCitiesThatJustGotUpdated()
+        this.updateCitiesThatJustGotUpdated();
       }
-      this.previousSelectedCitiesCount = values.length
+      this.previousSelectedCitiesCount = values.length;
     },
-    citiesThatJustGotUpdated () {
-      console.log("Watcher citiesThatJustGotUpdated")
-      this.updateCitiesThatJustGotUpdated()
+    citiesThatJustGotUpdated(values) {
+      values?.length && this.updateCitiesThatJustGotUpdated();
     }
   },
 
   methods: {
     getSeriesDataByCity(city) {
-      return this.$store.state.cities[city].series || []
+      return this.$store.state.cities[city].series || [];
     },
 
     updateCitiesThatJustGotUpdated() {
-      let series = cloneDeep(this.chartOptions.series)
-      this.citiesThatJustGotUpdated.forEach((city) => {
-        const cityName = city.name
-        const data = city.dataPoint
-        let found = false
-        series.map((currentSeries) => {
-          if (currentSeries.name === cityName) {
-            found = true
-            if (data.length)
-              // this.chartOptions.chart.events.load(data, index)
-              currentSeries.data.push(data)
-            }
-          })
+      let series = cloneDeep(this.chartOptions.series);
+      this.citiesThatJustGotUpdated.forEach(city => {
+        const cityName = city.name;
+        const data = city.dataPoint;
+        if (this.seriesIndexMap[cityName]) { // O(1) Insertion
+          const seriesIndex = this.seriesIndexMap[cityName]
+          series[seriesIndex].data.push(data)
+        } else {
+          // Add Full Series if not already added O(1) Insertion
+          this.seriesIndexMap[cityName] = series.length
+          series.push({
+            name: cityName,
+            data: this.getSeriesDataByCity(cityName)
+          });
+        }
+      });
+      this.chartOptions.series = series;
+    },
+
+    removeUnselectedCityFromSeries (values) {
+      this.chartOptions.series = this.chartOptions.series.filter(series => {
+          const found = values.includes(series.name)
           if (!found) {
-            // Add Full Series if not already added
-            console.log('Not found', {
-                name: cityName,
-                data: this.getSeriesDataByCity(cityName)
-              })
-              series.push(
-              {
-                name: cityName,
-                data: this.getSeriesDataByCity(cityName)
-              }
-            )
+            // remove series Index from map
+            delete this.seriesIndexMap[series.name]
           }
-      })
-      this.chartOptions.series = series
+          return found
+      });
     }
   }
-}
+};
 </script>
 
 <style></style>
