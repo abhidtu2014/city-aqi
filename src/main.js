@@ -11,8 +11,8 @@ import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/main.scss'
 
-import AQIService from './services/AQIService'
-AQIService.init()
+// import AQIService from './services/AQIService'
+// AQIService.init()
 
 Vue.use(ElementUI, { locale });
 Vue.config.productionTip = false

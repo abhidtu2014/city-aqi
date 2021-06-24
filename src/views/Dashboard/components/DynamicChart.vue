@@ -32,33 +32,12 @@ export default {
 
         plotOptions: {
           line: {
-            marker: { enabled: false }
+            marker: { enabled: true }
           }
         },
 
-        // rangeSelector: {
-        //   buttons: [
-        //     {
-        //       count: 1,
-        //       type: 'minute',
-        //       text: '1M'
-        //     },
-        //     {
-        //       count: 60,
-        //       type: 'Hour',
-        //       text: '1HR'
-        //     },
-        //     {
-        //       type: 'all',
-        //       text: 'All'
-        //     }
-        //   ],
-        //   inputEnabled: false,
-        //   selected: 0
-        // },
-
         title: {
-          text: "Live AQI data"
+          text: "Select cities from Dropdown to compare"
         },
 
         exporting: {

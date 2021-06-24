@@ -16,6 +16,7 @@ export default {
       }
       const currentTime = new Date().getTime()
       const updateStoredCity = {
+        name: city,
         AQI: aqi,
         maxAQI: Math.max(aqi, storedCity.maxAQI),
         minAQI: Math.min(aqi, storedCity.minAQI),

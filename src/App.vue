@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header><AppNavBar /></el-header>
-      <el-main><router-view /></el-main>
-      <el-footer><AppFooter /></el-footer>
-    </el-container>
+    <AppNavBar />
+    <el-main><router-view /></el-main>
+    <AppFooter />
   </div>
 </template>
 
@@ -29,10 +27,7 @@ export default {
   color: #2c3e50;
 }
 
-.el-header, .el-footer {
-  background-color: #B3C0D1;
-  color: #333;
-  text-align: start;
-  line-height: 60px;
+.el-main {
+  background-color: #F6F6F6;
 }
 </style>

@@ -77,10 +77,9 @@ export default {
   },
   computed: {
     tableData () {
-      return Object.keys(this.$store.state.cities).map((key) => {
-        const city = this.$store.state.cities[key];
+      return Object.values(this.$store.state.cities).map((city) => {
         return {
-          city: key,
+          city: city.name,
           AQI: city.AQI,
           lastUpdated: city.lastUpdated
         }
@@ -112,30 +111,6 @@ export default {
     margin: auto;
     max-width: 800px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  }
-
-  /deep/ .el-table .GOOD {
-    background-color: rgba(85,168,79, 0.8);
-  }
-
-  /deep/ .el-table .SATISFACTORY {
-    background-color:  rgba(163,200,83, 0.8);
-  }
-
-  /deep/ .el-table .MODERATE {
-    background-color: rgba(255,248,51, 0.8);
-  }
-
-  /deep/ .el-table .POOR {
-    background-color: rgba(242,156,51, 0.8);
-  }
-
-  /deep/ .el-table .VERY_POOR {
-    background-color: rgba(233,63,51, 0.8);
-  }
-
-  /deep/ .el-table .SEVERE {
-    background-color: rgba(175,45,36, 0.8);
   }
 
   /deep/ .el-tag {
