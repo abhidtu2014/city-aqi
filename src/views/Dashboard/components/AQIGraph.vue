@@ -1,6 +1,6 @@
 <template>
   <div class="graph-wrapper">
-    <el-row :gutter="10" class="graph-card-wrapper">
+    <div class="graph-card-wrapper">
       <el-card>
         <div slot="header" class="clearfix">
           <span>Cities</span>
@@ -25,7 +25,7 @@
       <div class="chart-wrapper">
         <DynamicChart :selectedCities="selectedCities" />
       </div>
-    </el-row>
+    </div>
   </div>
 </template>
 
@@ -57,9 +57,9 @@ export default {
   flex-direction: column;
   padding: 20px 0 20px;
   .graph-card-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+    gap: 20px;
   }
 }
 .chart-wrapper {
@@ -78,5 +78,15 @@ export default {
 }
 /deep/ .el-card__header {
   height: 200px;
+  border: none;
 }
+
+.clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
 </style>
