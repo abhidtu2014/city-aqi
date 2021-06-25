@@ -13,6 +13,8 @@ import './styles/main.scss'
 
 // import AQIService from './services/AQIService'
 // AQIService.init()
+import initWebWorkerService from './services/worker-api'
+initWebWorkerService();
 
 Vue.use(ElementUI, { locale });
 Vue.config.productionTip = false

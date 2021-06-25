@@ -4,7 +4,7 @@
       <el-timeline-item size="large" placement="top">
         <img
           class="item-icon"
-          src="../../assets/metro-city.svg"
+          src="/img/icons/metro-city.webp"
         />
         <el-row>
           <el-col>
@@ -16,7 +16,7 @@
       <el-timeline-item size="large" placement="top">
         <img
           class="item-icon"
-          src="https://img.icons8.com/color/48/000000/select-cell.png"
+          src="/img/icons/tabular.webp"
         />
         <el-row>
           <el-col>
@@ -28,7 +28,7 @@
       <el-timeline-item placement="top">
         <img
           class="item-icon"
-          src="https://img.icons8.com/color/48/000000/graph.png"
+          src="/img/icons/graph.webp"
         />
         <el-row>
           <el-col>
@@ -40,7 +40,7 @@
       <el-timeline-item placement="top">
         <img
           class="item-icon"
-          src="https://img.icons8.com/color/48/000000/mix-words.png"
+          src="/img/icons/wordcloud.webp"
         />
         <el-row>
           <el-col>

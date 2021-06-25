@@ -5,7 +5,7 @@
         <el-card v-for="city in metroCities" :key="city.name">
           <el-row>
             <el-col>
-              <img :src="city.icon" class="metro-city-icon"/>
+              <img :src="`/img/icons/city-${city.name.toLowerCase()}.webp`" class="metro-city-icon"/>
             </el-col>
             <el-col>
               <p>
@@ -30,11 +30,11 @@ export default {
     return {
       cities: ['Delhi', 'Bengaluru', 'Mumbai', 'Kolkata', 'Hyderabad'],
       cityIcons: {
-        'Delhi': 'https://api.aqi.in/public/uploads/BigCities/India/Delhi.svg',
-        'Bengaluru': 'https://api.aqi.in/public/uploads/BigCities/India/Bengaluru.svg',
-        'Mumbai': 'https://api.aqi.in/public/uploads/BigCities/India/Mumbai.svg',
-        'Kolkata': 'https://api.aqi.in/public/uploads/BigCities/India/Kolkata.svg',
-        'Hyderabad': 'https://api.aqi.in/public/uploads/BigCities/India/Hyderabad.svg'
+        'Delhi': 'images/Delhi.svg',
+        'Bengaluru': '../../../images/Bengaluru.svg',
+        'Mumbai': '../../../images/Mumbai.svg',
+        'Kolkata': '../../../images/Kolkata.svg',
+        'Hyderabad': '../../../images/Hyderabad.svg'
       }
     }
   },
@@ -79,3 +79,4 @@ export default {
   }
 }
 </style>
+
