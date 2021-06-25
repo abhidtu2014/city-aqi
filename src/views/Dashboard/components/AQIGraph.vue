@@ -1,34 +1,30 @@
 <template>
   <div class="graph-wrapper">
     <el-row :gutter="10" class="graph-card-wrapper">
-      <el-col :span="8">
-        <el-card>
-          <div slot="header" class="clearfix">
-            <span>Cities</span>
-            <el-select
-              v-model="selectedCities"
-              placeholder="Select Cities for comparison"
-              size="mini"
-              multiple
-              filterable
-              style="width: 100%; margin-top: 20px;"
+      <el-card>
+        <div slot="header" class="clearfix">
+          <span>Cities</span>
+          <el-select
+            v-model="selectedCities"
+            placeholder="Select Cities for comparison"
+            size="mini"
+            multiple
+            filterable
+            style="width: 100%; margin-top: 20px;"
+          >
+            <el-option
+              v-for="city in cities"
+              :key="city"
+              :label="city"
+              :value="city"
             >
-              <el-option
-                v-for="city in cities"
-                :key="city"
-                :label="city"
-                :value="city"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="16">
-        <div class="chart-wrapper">
-          <DynamicChart :selectedCities="selectedCities" />
+            </el-option>
+          </el-select>
         </div>
-      </el-col>
+      </el-card>
+      <div class="chart-wrapper">
+        <DynamicChart :selectedCities="selectedCities" />
+      </div>
     </el-row>
   </div>
 </template>
@@ -63,11 +59,13 @@ export default {
   .graph-card-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 }
 .chart-wrapper {
-  min-height: 400px;
-  margin-top: 30px;
+  /* min-height: 400px; */
+  /* margin-top: 30px; */
+  margin-left: 30px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 /deep/ .el-col {

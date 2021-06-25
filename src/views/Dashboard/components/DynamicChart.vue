@@ -40,10 +40,6 @@ export default {
           text: "Select cities from Dropdown to compare"
         },
 
-        exporting: {
-          enabled: true
-        },
-
         series: []
       },
       previousSelectedCitiesCount: 0, // To limit unneccessary re-render
@@ -66,7 +62,7 @@ export default {
     async selectedCities(values) {
       if (this.previousSelectedCitiesCount > values.length) {
         // Remove any city if removed from selection
-        await this.removeUnselectedCityFromSeries(values)
+        await this.removeUnselectedCityFromSeries(values);
       } else if (this.previousSelectedCitiesCount < values.length) {
         // Add New Series/Update Existing series data
         await this.updateCitiesThatJustGotUpdated();
@@ -74,7 +70,7 @@ export default {
       this.previousSelectedCitiesCount = values.length;
     },
     async citiesThatJustGotUpdated(values) {
-      values?.length && await this.updateCitiesThatJustGotUpdated();
+      values?.length && (await this.updateCitiesThatJustGotUpdated());
     }
   },
 
@@ -84,17 +80,18 @@ export default {
     },
 
     updateCitiesThatJustGotUpdated() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         let series = cloneDeep(this.chartOptions.series);
         this.citiesThatJustGotUpdated.forEach(city => {
           const cityName = city.name;
           const data = city.dataPoint;
-          if (this.seriesIndexMap[cityName]) { // O(1) Insertion
-            const seriesIndex = this.seriesIndexMap[cityName]
-            series[seriesIndex]?.data && series[seriesIndex].data.push(data)
+          if (this.seriesIndexMap[cityName]) {
+            // O(1) Insertion
+            const seriesIndex = this.seriesIndexMap[cityName];
+            series[seriesIndex]?.data && series[seriesIndex].data.push(data);
           } else {
             // Add Full Series if not already added O(1) Insertion
-            this.seriesIndexMap[cityName] = series.length
+            this.seriesIndexMap[cityName] = series.length;
             series.push({
               name: cityName,
               data: this.getSeriesDataByCity(cityName)
@@ -102,22 +99,22 @@ export default {
           }
         });
         this.chartOptions.series = series;
-        resolve(true)
-      })
+        resolve(true);
+      });
     },
 
-    removeUnselectedCityFromSeries (values) {
-      return new Promise((resolve) => {
+    removeUnselectedCityFromSeries(values) {
+      return new Promise(resolve => {
         this.chartOptions.series = this.chartOptions.series.filter(series => {
-            const found = values.includes(series.name)
-            if (!found) {
-              // remove series Index from map
-              delete this.seriesIndexMap[series.name]
-            }
-            return found
+          const found = values.includes(series.name);
+          if (!found) {
+            // remove series Index from map
+            delete this.seriesIndexMap[series.name];
+          }
+          return found;
         });
-        resolve(true)
-      })
+        resolve(true);
+      });
     }
   }
 };

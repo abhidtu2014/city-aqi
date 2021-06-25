@@ -16,7 +16,7 @@
           <el-col>
             <ul>
               <span v-for="category in categories" :key="category">
-                <el-tooltip class="item" effect="dark" :content="category" placement="bottom">
+                <el-tooltip class="item" effect="dark" :content="formatter(category)" placement="bottom">
                   <li
                   :class="`category-${category}`"
                 ></li>
@@ -47,6 +47,12 @@ export default {
 
   created () {
     this.categories = Object.values(constants.AQI_CATEGORIES).map((category) => category.name)
+  },
+
+  methods: {
+    formatter (category) {
+      return category.split('_').map((word) => word.toLowerCase()).join(' ')
+    }
   }
 }
 </script>

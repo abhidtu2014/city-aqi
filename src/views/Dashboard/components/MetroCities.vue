@@ -5,7 +5,7 @@
         <el-card v-for="city in metroCities" :key="city.name">
           <el-row>
             <el-col>
-              <img :src="`/img/icons/city-${city.name.toLowerCase()}.webp`" class="metro-city-icon"/>
+              <img :src="city.icon" class="metro-city-icon" :alt="city.name" />
             </el-col>
             <el-col>
               <p>
@@ -28,33 +28,43 @@
 export default {
   data () {
     return {
-      cities: ['Delhi', 'Bengaluru', 'Mumbai', 'Kolkata', 'Hyderabad'],
-      cityIcons: {
-        'Delhi': 'images/Delhi.svg',
-        'Bengaluru': '../../../images/Bengaluru.svg',
-        'Mumbai': '../../../images/Mumbai.svg',
-        'Kolkata': '../../../images/Kolkata.svg',
-        'Hyderabad': '../../../images/Hyderabad.svg'
+      cities: {
+        'Delhi': {
+          name: 'Delhi',
+          AQI: '-',
+          icon: '/img/icons/city-delhi.webp'
+        },
+        'Bengaluru': {
+          name: 'Bengaluru',
+          AQI: '-',
+          icon: '/img/icons/city-bengaluru.webp'
+        },
+        'Mumbai': {
+          name: 'Mumbai',
+          AQI: '-',
+          icon: '/img/icons/city-mumbai.webp'
+        },
+        'Kolkata': {
+          name: 'Kolkata',
+          AQI: '-',
+          icon: '/img/icons/city-kolkata.webp'
+        },
+        'Hyderabad': {
+          name: 'Hyderabad',
+          AQI: '-',
+          icon: '/img/icons/city-hyderabad.webp'
+        }
       }
     }
   },
   computed: {
     metroCities () {
-      const metroCities = Object.values(this.$store.state.cities).map((city) => {
+      return Object.values(this.cities).map((city) => {
         return {
-          name: city.name,
-          AQI: city.AQI,
-          icon: this.cityIcons[city.name]
-        }
-      }).filter((city) => this.cities.includes(city.name)) 
-      const defaultView = this.cities.map((city) => {
-        return {
-          name: city,
-          AQI: '-',
-          icon: this.cityIcons[city]
+          ...city,
+          AQI: this.$store.state.cities[city.name]?.AQI || '-'
         }
       })
-      return metroCities.length > 0 ? metroCities : defaultView
     }
   }
 }
@@ -76,6 +86,11 @@ export default {
   .metro-city-icon {
     height: 100px;
     width: 100px;
+  }
+  p {
+    padding: 5px;
+    font-size: 1em;
+    font-weight: bold;
   }
 }
 </style>

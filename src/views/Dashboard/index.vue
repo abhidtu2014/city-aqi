@@ -3,6 +3,7 @@
     <el-timeline>
       <el-timeline-item size="large" placement="top">
         <img
+          alt="metro cities"
           class="item-icon"
           src="/img/icons/metro-city.webp"
         />
@@ -15,6 +16,7 @@
       </el-timeline-item>
       <el-timeline-item size="large" placement="top">
         <img
+          alt="Tabular Data"
           class="item-icon"
           src="/img/icons/tabular.webp"
         />
@@ -28,6 +30,7 @@
       </el-timeline-item>
       <el-timeline-item placement="top">
         <img
+          alt="Live Graph"
           class="item-icon"
           src="/img/icons/graph.webp"
         />
@@ -40,6 +43,7 @@
       </el-timeline-item>
       <el-timeline-item placement="top">
         <img
+          alt="wordcloud"
           class="item-icon"
           src="/img/icons/wordcloud.webp"
         />

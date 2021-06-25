@@ -15,5 +15,8 @@ export function getCategoryByAQI (aqi) {
     return constants.AQI_CATEGORIES.SEVERE
   } else {
     console.log("Invalid", aqi)
+    return {
+      colorCode: '#FFF'
+    }
   }
 }

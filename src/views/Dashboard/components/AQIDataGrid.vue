@@ -72,16 +72,78 @@ export default {
           value: 'SEVERE',
           text: 'Severe'
         },
-      ]
+      ],
+      cities: {
+        'Delhi': {
+          city: 'Delhi',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Bengaluru': {
+          city: 'Bengaluru',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Mumbai': {
+          city: 'Mumbai',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Bhubaneswar': {
+          city: 'Bhubaneswar',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Chennai': {
+          city: 'Chennai',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Pune': {
+          city: 'Pune',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Indore': {
+          city: 'Indore',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Chandigarh': {
+          city: 'Chandigarh',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Hyderabad': {
+          city: 'Hyderabad',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Lucknow': {
+          city: 'Lucknow',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Kolkata': {
+          city: 'Kolkata',
+          AQI: '-',
+          lastUpdated: null
+        },
+        'Jaipur': {
+          city: 'Jaipur',
+          AQI: '-',
+          lastUpdated: null
+        }
+      }
     }
   },
   computed: {
     tableData () {
-      return Object.values(this.$store.state.cities).map((city) => {
+      return Object.values(this.cities).map((city) => {
         return {
-          city: city.name,
-          AQI: city.AQI,
-          lastUpdated: city.lastUpdated
+          ...city,
+          AQI: this.$store.state.cities[city.city]?.AQI || '-',
+          lastUpdated: this.$store.state.cities[city.city]?.lastUpdated || null
         }
       })
     }
@@ -89,7 +151,7 @@ export default {
 
   methods: {
     formatter(row) {
-      return moment(row.lastUpdated).fromNow()
+      return row.lastUpdated ? moment(row.lastUpdated).fromNow(): ''
     },
     getCategoryByAQIWrapper (row) {
       return getCategoryByAQI(row.AQI)

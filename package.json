@@ -5,8 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
+    "lint": "vue-cli-service lint",
+    "deploy": "deploy:live & invalidate-cache:live",
+    "deploy:live": "npm run build && aws s3 sync dist/    s3://<YOUR_S3_BUCKET_NAME> --delete && npm run-script invalidate-cache:live",
+    "invalidate-cache:live": "aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id <CLOUDFRONT_DISTRIBUTION_ID> --paths '/*'"
+   },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.15.2",
@@ -15,7 +18,6 @@
     "moment": "^2.29.1",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

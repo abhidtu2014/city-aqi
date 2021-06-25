@@ -1,18 +1,22 @@
 <template>
   <div id="app">
     <AppNavBar />
-    <el-main><router-view /></el-main>
+    <el-main>
+      <Dashboard />
+    </el-main>
     <AppFooter />
   </div>
 </template>
 
 <script>
 import AppFooter from "./components/AppFooter";
+import Dashboard from "./views/Dashboard";
 import AppNavBar from "./components/AppNavBar";
 
 export default {
   components: {
     AppNavBar,
+    Dashboard,
     AppFooter
   }
 };

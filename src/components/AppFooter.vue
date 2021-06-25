@@ -1,78 +1,119 @@
 <template>
   <footer class="site-footer">
-      <el-row>
-        <el-col :span="12">
-          <h6>About</h6>
-          <p class="text-justify">
-            This Web App displays real time AQI updates from <br /> Web socket of
-            various cities around India.
-          </p>
-        </el-col>
-        <el-col :span="6">
-          <h6>Categories</h6>
-          <ul class="footer-links">
-            <li><a href="#">Node</a></li>
-            <li>
-              <a href="#">React</a>
-            </li>
-            <li>
-              <a href="#">C++</a>
-            </li>
-            <li>
-              <a href="#">Vue.js</a>
-            </li>
-            <li>
-              <a href="#">Kafka</a>
-            </li>
-            <li>
-              <a href="#">Pubnub</a>
-            </li>
-          </ul>
-        </el-col>
-        <el-col :span="6">
-          <h6>Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li>
-              <a href="#">Contribute</a>
-            </li>
-            <li>
-              <a href="#">Privacy Policy</a>
-            </li>
-            <li><a href="#">Sitemap</a></li>
-          </ul>
-        </el-col>
-      </el-row>
+    <el-row>
+      <el-col :span="12">
+        <h6>About</h6>
+        <p class="text-justify">
+          This Web App displays real time AQI updates from <br />
+          Web socket of various cities around India.
+        </p>
+      </el-col>
+      <el-col :span="6">
+        <h6>Tech Stack</h6>
+        <ul class="footer-links">
+          <li><a target="_blank" href="https://vuejs.org/">Vue.js</a></li>
+          <li>
+            <a target="_blank" href="https://element.eleme.io/#/en-US"
+              >ElementUI</a
+            >
+          </li>
+          <li>
+            <a target="_blank" href="https://www.highcharts.com/">Highcharts</a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API"
+              >Web Sockets</a
+            >
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers"
+              >Web Worker</a
+            >
+          </li>
+          <li>
+            <a target="_blank" href="https://aws.amazon.com/">AWS S3</a>
+          </li>
+          <li>
+            <a target="_blank" href="https://aws.amazon.com/">AWS Cloudfront</a>
+          </li>
+        </ul>
+      </el-col>
+      <el-col :span="6">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="#">About Me</a></li>
+          <li><a href="#">Contact Me</a></li>
+          <li>
+            <a href="#">Contribute</a>
+          </li>
+          <li>
+            <a href="#">Privacy Policy</a>
+          </li>
+        </ul>
+      </el-col>
+    </el-row>
 
-      <el-row>
-        <el-col :span="6" :offset="3">
-          <p class="copyright-text">
-            Copyright &copy; 2021 All Rights Reserved by
-            <a href="#">Abhishek Rajput</a>.
-          </p>
-        </el-col>
-        <el-col :span="6" :offset="7">
-          <ul class="social-icons">
-            <li>
-              <img src="https://img.icons8.com/color/48/000000/facebook.png" />
-            </li>
-            <li>
-              <img
-                src="https://img.icons8.com/color/48/000000/twitter-circled--v3.png"
-              />
-            </li>
-            <li>
-              <img
-                src="https://img.icons8.com/color/48/000000/google-maps.png"
-              />
-            </li>
-            <li>
-              <img src="https://img.icons8.com/color/48/000000/linkedin.png" />
-            </li>
-          </ul>
-        </el-col>
-      </el-row>
+    <el-row>
+      <el-col :span="6" :offset="3">
+        <p class="copyright-text">
+          Copyright &copy; 2021 All Rights Reserved by
+          <a
+            target="_blank"
+            aria-label="Reach out to me on Linkedin"
+            href="https://www.linkedin.com/in/abhishek-rajput-codeslayer/"
+            >Abhishek Rajput</a
+          >.
+        </p>
+      </el-col>
+      <el-col :span="6" :offset="7">
+        <ul class="social-icons">
+          <li>
+            <a
+              title="Linkedin"
+              target="_blank"
+              aria-label="Reach out to me on Linkedin"
+              href="https://www.linkedin.com/in/abhishek-rajput-codeslayer/"
+            >
+              <img alt="linkedin icon" class="social-icon-img" src="/img/icons/linkedin.svg" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Github"
+              target="_blank"
+              aria-label="Checkout my projects on github"
+              href="https://github.com/abhidtu2014/"
+            >
+              <img alt="github icon" class="social-icon-img" src="/img/icons/github.svg" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Leetcode"
+              target="_blank"
+              aria-label="Checkout my profile on Leetcode"
+              href="https://leetcode.com/abhi_dtu2014/"
+            >
+              <img alt="leetcode icon" class="social-icon-img" src="/img/icons/leetcode.svg" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Instagram"
+              target="_blank"
+              aria-label="Follow me on instagram"
+              href="https://www.instagram.com/abhishek.rajput14/"
+            >
+              <img alt="instagram" class="social-icon-img" src="/img/icons/instagram.svg" />
+            </a>
+          </li>
+        </ul>
+      </el-col>
+    </el-row>
   </footer>
 </template>
 
@@ -141,7 +182,7 @@ export default {};
   margin-left: 6px;
   margin-right: 0;
   border-radius: 100%;
-  background-color: #33353d;
+  background-color: rgb(38, 39, 43);
 }
 .copyright-text {
   margin: 0;
@@ -168,8 +209,8 @@ export default {};
   font-size: 16px;
   display: inline-block;
   line-height: 44px;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   text-align: center;
   margin-right: 8px;
   border-radius: 100%;
@@ -177,12 +218,16 @@ export default {};
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-.social-icons a:active,
+.social-icon-img {
+  width: 48px;
+  height: 48px;
+}
+/* .social-icons a:active,
 .social-icons a:focus,
 .social-icons a:hover {
   color: #fff;
   background-color: #29aafe;
-}
+} */
 .social-icons.size-sm a {
   line-height: 34px;
   height: 34px;
