@@ -1,3 +1,4 @@
+// Deprecated: Now using worker-api instead
 import store from '../store';
 
 class AQIService {

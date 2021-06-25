@@ -1,7 +1,9 @@
 <template>
   <div class="wordcloud-wrapper">
-   <highcharts class="hc" :options="chartOptions" ref="highchart"></highcharts>
-   <ColorAxis />
+    <el-card>
+      <highcharts class="hc" :options="chartOptions" ref="highchart"></highcharts>
+      <ColorAxis />
+    </el-card>
   </div>
 </template>
 
@@ -73,4 +75,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .wordcloud-wrapper {
+    max-width: 800px;
+    margin: auto;
+  }
+</style>

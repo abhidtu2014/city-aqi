@@ -1,10 +1,8 @@
 <template>
   <div class="color-axis">
-    <el-row>
-    </el-row>
-    <el-row>
+    <el-row class="color-axis-flex">
       <el-col :span="12" class="el-col-range">
-        <div>Category Classification (AQI)</div>
+        <div>AQI Classification</div>
       </el-col>
       <el-col :span="12" class="el-col-categories">
         <el-row>
@@ -17,11 +15,13 @@
           </el-col>
           <el-col>
             <ul>
-              <li
-                v-for="category in categories"
-                :key="category"
-                :class="`category-${category}`"
-              ></li>
+              <span v-for="category in categories" :key="category">
+                <el-tooltip class="item" effect="dark" :content="category" placement="bottom">
+                  <li
+                  :class="`category-${category}`"
+                ></li>
+              </el-tooltip>
+              </span>
             </ul>
           </el-col>
         </el-row>
@@ -52,6 +52,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.color-axis {
+  margin-top: 10px;
+}
+.color-axis-flex {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
   .category-GOOD {
     background-color: rgba(85,168,79, 1.0);
   }

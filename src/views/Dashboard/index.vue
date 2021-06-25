@@ -22,6 +22,7 @@
           <el-col>
             <Heading heading="Tabular Data" />
             <AQIDataGrid />
+            <ColorAxis />
           </el-col>
         </el-row>
       </el-timeline-item>
@@ -59,6 +60,7 @@ import AQIGraph from "./components/AQIGraph";
 import WordCloud from "./components/WordCloud";
 import Heading from "./components/Heading";
 import MetroCities from "./components/MetroCities";
+import ColorAxis from "./components/ColorAxis";
 
 export default {
   components: {
@@ -66,7 +68,8 @@ export default {
     AQIGraph,
     WordCloud,
     Heading,
-    MetroCities
+    MetroCities,
+    ColorAxis
   }
 };
 </script>

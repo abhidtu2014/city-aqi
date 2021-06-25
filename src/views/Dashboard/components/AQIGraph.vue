@@ -68,6 +68,7 @@ export default {
 .chart-wrapper {
   min-height: 400px;
   margin-top: 30px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 /deep/ .el-col {
   display: flex;
