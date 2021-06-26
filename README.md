@@ -9,7 +9,7 @@
 
 ### Business Case | What is the Problem being solved ?
 - Getting real-time updates can increase user stickability and interaction.
-- Tabular and Graphical Visualization can impact users who might want to compare different cities.
+- Tabular and Graphical Visualization makes it easy for users to compare data of different cities.
 
 ### Assumptions
 - Data is being received in intervals of 2 seconds.
