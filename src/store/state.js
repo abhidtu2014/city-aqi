@@ -22,5 +22,7 @@ export default {
     id: '',
     city: ''
   },
-  citiesUpdated: []
+  citiesUpdated: [],
+  dataLastArchived: null,
+  dataArchivalLimit: 18000000 // 5hrs in ms
 }

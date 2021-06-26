@@ -28,6 +28,15 @@ export default {
     })
     state.cities = Object.assign({}, cities)
     state.citiesUpdated = currentUpdatedCities
+  },
+  RESET_STORED_DATA (state) {
+    state.cities = {},
+    state.user = {
+      id: '',
+      city: ''
+    }
+    state.citiesUpdated = []
+    state.dataLastArchived = new Date().getTime()
   }
 }
 

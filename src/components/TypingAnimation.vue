@@ -26,7 +26,7 @@ h1 {
 	color: $text-color;
 }
 // Typing style
-.typing {
+/* .typing {
   position: relative;
 	&::after {
     content: "|";
@@ -38,12 +38,12 @@ h1 {
     animation: typing $animation-time steps($text-length) forwards,
       caret 1s infinite;
   }
-}
+} */
 // Animation
-@keyframes typing {
+/* @keyframes typing {
 	to { width: 0 }
 }
 @keyframes caret {
 	50% { color: transparent }
-}
+} */
 </style>
