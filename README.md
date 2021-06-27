@@ -27,16 +27,21 @@
 
 
 ### Features Built (~ 10-12 hrs)
-- **Metro cities AQI Overview Component**: Provides Quick look into live Data
-- **Tabular AQI Data View**: Provides Most Recent Data i.e Filterable by category and Sortable by AQI
-- **City AQI Comparsion View**: Provides Comparsion of Historical Data Injected into graph (no limit on cities selection)
-- **Word Cloud View**: Provides Most recent City AQI Data into word cloud where each word will carry weight according to its AQI value
-- **Responsive Design and Layout design**: Used Grids and flex to make it Highly responsive, works well in md to xl, can be used in sm too with few limitations.
+- **Metro cities AQI Overview Component**: Provides Quick look into live Data of Metropolian cities.
+- **Tabular AQI Data View**: Provides Most Recent Data of all cities i.e Filterable by Category and 
+  Sortable by AQI value.
+- **City AQI Comparsion View**: Provides Comparsion of Historical Data Injected into graph (no limit 
+  on cities selection) with pre-built timeline selector and range selector.
+- **Word Cloud View**: Provides Most recent City AQI Data into word cloud where each word will carry
+  weight according to its AQI value
+- **Responsive Design**: Used Grids and flex to make it Highly responsive, works well with all Device
+  Screen types from *SM* to *XL*.
+- **Data Archival**: Data gets Automatically archived after 5 hours of active session.
 
-## R&D and Optimizations (~ 7-8 hrs)
-- Preloaded link tags
-- Avoided inline styles
-- Used Hash map to insert into array for O(1) Insertion
+## R&D and Optimizations (~ 5 hrs)
+- Preloaded link tags.
+- Avoided inline styles to avoid layout shifts.
+- Used Hash map for O(1) Insertion.
 - Avoided cloneDeep from lodash where it should have been, instead used Object.assign() for objects and 
   spread Operators for shallow copying for State Mutation.
 - Used Computed Properties from Vue Component Instead of getter methods as they cache values based on their Reactive Dependencies.
@@ -65,3 +70,8 @@ npm install
 ```
 npm run serve
 ```
+
+### Future Thoughts
+- A good time-series Store can be used like Druid for fast querying and AWS S3 as Data lake.
+- To Add Data Persistence layer on frontend(with Archival Strategy) using IndexedDB and using pre-aggregated data and setting up Indexes for Search Optimization.
+- Shared Web workers can also be used, will optimize n/w load of browser having multiple tabs opened up for same application.
