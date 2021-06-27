@@ -50,8 +50,14 @@
 - Reduce Layout Shifts to bare minimum using optimized re-rendering of components using preloading of Default view into component.
 
 ## Lighthouse Optimization Results
-![Result 1](/public/img/lighthouse-result-1.png)
+
+*Device Type:* Mobile
+
 ![Result 2](/public/img/lighthouse-result-2.png)
+
+*Device Type:* Desktop
+
+![Result 3](/public/img/lighthouse_destop_result.png)
 For more details [goto](https://tinyurl.com/optimzation) 
 
 ### HLD
