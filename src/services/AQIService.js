@@ -1,6 +1,5 @@
-// Deprecated: Now using worker-api instead
+// Deprecated: Now using worker instance instead
 import store from '../store';
-
 class AQIService {
   #socket;
   constructor () {

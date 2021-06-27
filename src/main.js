@@ -9,7 +9,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/main.scss'
 
-import initWebWorkerService from './services/worker-api'
+import initWebWorkerService from './services/worker'
 initWebWorkerService();
 
 Vue.use(ElementUI, { locale });

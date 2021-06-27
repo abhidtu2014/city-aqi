@@ -42,41 +42,36 @@ export default {
 
         series: []
       },
-      previousSelectedCitiesCount: 0, // To limit unneccessary re-render
-      seriesIndexMap: {} // Map to achieve O(1) insertion and deletion in series Data
+      previousSelectedCitiesCount: 0 // To limit unneccessary re-render
     };
   },
 
   computed: {
     citiesThatJustGotUpdated() {
       return (
-        this.selectedCities.length &&
-        this.$store.state.citiesUpdated.filter(city =>
+        this.selectedCities.length ?
+          this.$store.state.citiesUpdated.filter(city =>
           this.selectedCities.includes(city.name)
-        )
+        ): []
       );
     }
   },
 
   watch: {
-    async selectedCities(values) {
-      if (this.previousSelectedCitiesCount > values.length) {
-        // Remove any city if removed from selection
-        await this.removeUnselectedCityFromSeries(values);
-      } else if (this.previousSelectedCitiesCount < values.length) {
-        // Add New Series/Update Existing series data
-        await this.updateCitiesThatJustGotUpdated();
+    async citiesThatJustGotUpdated() {
+      if (this.previousSelectedCitiesCount > this.selectedCities.length) {
+        await this.removeUnselectedCityFromSeries(this.selectedCities);
       }
-      this.previousSelectedCitiesCount = values.length;
-    },
-    async citiesThatJustGotUpdated(values) {
-      values?.length && (await this.updateCitiesThatJustGotUpdated());
+      if (this.previousSelectedCities !== this.selectedCities.length) { // Update Only when required
+        this.previousSelectedCitiesCount = this.selectedCities.length;
+      }
+      await this.updateCitiesThatJustGotUpdated();
     }
   },
 
   methods: {
     getSeriesDataByCity(city) {
-      return this.$store.state.cities[city].series || [];
+      return cloneDeep(this.$store.state.cities[city].series) || [];
     },
 
     updateCitiesThatJustGotUpdated() {
@@ -85,13 +80,10 @@ export default {
         this.citiesThatJustGotUpdated.forEach(city => {
           const cityName = city.name;
           const data = city.dataPoint;
-          if (this.seriesIndexMap[cityName]) {
-            // O(1) Insertion
-            const seriesIndex = this.seriesIndexMap[cityName];
-            series[seriesIndex]?.data && series[seriesIndex].data.push(data);
+          const storedSeriesIndex = this.doesCitySeriesExist(cityName)
+          if (storedSeriesIndex > -1) {
+            series[storedSeriesIndex].data.push(data);
           } else {
-            // Add Full Series if not already added O(1) Insertion
-            this.seriesIndexMap[cityName] = series.length;
             series.push({
               name: cityName,
               data: this.getSeriesDataByCity(cityName)
@@ -103,18 +95,15 @@ export default {
       });
     },
 
-    removeUnselectedCityFromSeries(values) {
+    removeUnselectedCityFromSeries() {
       return new Promise(resolve => {
-        this.chartOptions.series = this.chartOptions.series.filter(series => {
-          const found = values.includes(series.name);
-          if (!found) {
-            // remove series Index from map
-            delete this.seriesIndexMap[series.name];
-          }
-          return found;
-        });
+        this.chartOptions.series = this.chartOptions.series.filter(series => this.selectedCities.includes(series.name));
         resolve(true);
       });
+    },
+
+    doesCitySeriesExist(cityName) {
+      return this.chartOptions.series.findIndex(series => series.name === cityName)
     }
   }
 };

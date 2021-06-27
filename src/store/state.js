@@ -1,5 +1,4 @@
 /**
- * Single Mutation cycle
  cities: {
   'key': {
     AQI: Number
