@@ -63,9 +63,6 @@ For more details [goto](https://tinyurl.com/optimzation)
 ### HLD
 ![High Level Design](/public/img/city-aqi.png)
 
-### App Demo
-http://doy1mph2r05fp.cloudfront.net/
-
 
 ### Project setup
 ```
